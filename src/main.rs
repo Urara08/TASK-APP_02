@@ -36,10 +36,12 @@ if lines.len() == 0 {
     }
 
 //ナンバリングしたlinesを表示
+    let mut string_box_for_print = String::new();
     for (index, line) in &mut lines.clone().into_iter().enumerate()  {//インデックスと各要素のペアをタプルにして取得
     let line = line; //linesから文字列を取り出す
-    println!("{}:{}", index + 1, line); //行番号 (1から開始) と行文字列を出力
+    string_box_for_print.push_str(&format!("{}:{}\n", index + 1, line)); //行番号 (1から開始) と行文字列を出力
     }
+    println!("未完了タスク一覧\n{}",string_box_for_print);//改行コードを維持して表示
 
 //処理番号を標準入力で取得
 let mut Service_type = String::new();//入力された処理番号を格納
