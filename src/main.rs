@@ -10,8 +10,10 @@ use delete::file_for_delete;
 
 
 fn main(){
+//data.txtのパスを指定
+let File_Path:&str = "src/data.txt";
 //data.txtを開く
-let mut file_path:File= File::open("src/data.txt").unwrap();
+let mut file_path:File= File::open(File_Path).unwrap();
 //読み込んだデータをString型に格納
 let mut contents = String::new();
 //data.txtの内容を１行ずつcontentsに読み込み
@@ -69,7 +71,7 @@ if Service_type.trim() == "0"{
     let task_index = task_number.trim().parse::<usize>().unwrap() - 1;//Vecは0始まりのため-1
 
 //指定されたタスク番号のタスクを削除する処理へ
-let mut f = File::open("src/data.txt").unwrap();//ファイルを開く
+let mut f = File::open(File_Path).unwrap();//ファイルを開く
 if  lines.len() > task_index{//指定されたタスク番号がタスク数を超えていない場合
     lines.remove(task_index);//Vecから指定されたタスク番号のタスクを削除
     println!("未完了のタスク{:?}",&lines);
