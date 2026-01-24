@@ -27,7 +27,7 @@ let mut lines: Vec<String> = contents//(Vecをシャドーイング：contents�
 .collect();//Vecに格納
 
 //未完了タスクの表示
-if lines.len() == 0 {
+if  lines.len() == 0 {
     println!
     ("未完了タスクはありません\n処理を選択してください\n(０:新規タスク登録、１:タスクの完了)");}
     else{
@@ -37,7 +37,7 @@ if lines.len() == 0 {
 
 //ナンバリングしたlinesを表示
     let mut string_box_for_print = String::new();
-    for (index, line) in &mut lines.clone().into_iter().enumerate()  {//インデックスと各要素のペアをタプルにして取得
+    for (index, line) in lines.iter().enumerate()  {//インデックスと各要素のペアをタプルにして取得
     let line = line; //linesから文字列を取り出す
     string_box_for_print.push_str(&format!("{}:{}\n", index + 1, line)); //行番号 (1から開始) と行文字列を出力
     }
