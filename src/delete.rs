@@ -5,7 +5,7 @@ use std::io::prelude::*;
 
 //タスク削除用関数
 //x=lines
-pub fn file_for_delete(x:&Vec<String>){
+pub fn file_rewrite_for_delete(x:&Vec<String>){
 let mut file = OpenOptions::new()
 .create(true)// ファイルがなければ作成
 .write(true)// 書き込みモードで開く

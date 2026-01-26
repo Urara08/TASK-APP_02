@@ -5,7 +5,7 @@ use std::io::{Read, Write, BufWriter};
 
 //登録内容をdata.txtに追記する関数
 //x=file_path
-pub fn file_add_register(x:String){
+pub fn file_rewrite_for_register(x:String){
 let mut file = OpenOptions::new()
 .create(true)// ファイルがなければ作成
 .append(true)// 追記モードで開く
