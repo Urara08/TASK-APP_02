@@ -8,7 +8,7 @@ mod register;
 mod delete;
 
 use appear::appear_for_unfinished_task;
-use register::file_rewrite_for_register;
+use register::run;
 use delete::file_rewrite_for_delete;
 
 fn main(){
@@ -39,7 +39,7 @@ if  task_lines.len() == 0 {
     ("処理を選択してください\n(０:新規タスク登録、１:タスクの完了)");
     }
 /*--------------------------------------------------------------------------------------------*/
-//ナンバリングしたtask_linesを表示
+//未完了タスク(ナンバリングしたtask_lines)を表示する関数へ
     appear_for_unfinished_task(&task_lines);
 /*--------------------------------------------------------------------------------------------*/
 //処理番号を標準入力で取得
@@ -51,13 +51,8 @@ Service_type.trim().to_string().parse::<u32>().unwrap();//整数に変換
 if Service_type.trim() == "0"{
 /*--------------------------------------------------------------------------------------------*/
 //０：タスクの登録へ
-    println!("新規タスクを入力してください");
-    let mut new_task_name = String::new();//入力されたタスク名を格納
-    io::stdin().read_line(&mut new_task_name).unwrap();//標準入力で取得
-    new_task_name.trim().to_string().parse::<String>().unwrap();//文字列に変換
-/*--------------------------------------------------------------------------------------------*/
-//追加足したタスクをdata.txtに追記する関数へ
-    file_rewrite_for_register(new_task_name);
+    register::run(File_Path);
+
 /*--------------------------------------------------------------------------------------------*/
 }else if
 //１：タスクの削除へ
