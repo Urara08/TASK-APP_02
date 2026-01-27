@@ -6,10 +6,8 @@ use std::io::prelude::*;
 mod appear;
 mod register;
 mod delete;
-
 use appear::appear_for_unfinished_task;
-use register::run;
-use delete::file_rewrite_for_delete;
+
 
 fn main(){
 //data.txtのパスを指定
@@ -33,7 +31,8 @@ let mut task_lines: Vec<String> = contents//(Vecをシャドーイング：conte
 //未完了タスクの表示
 if  task_lines.len() == 0 {
     println!
-    ("未完了タスクはありません\n処理を選択してください\n(０:新規タスク登録、１:タスクの完了)");}
+    ("未完了タスクはありません\n処理を選択してください\n(０:新規タスク登録、１:タスクの完了)");
+    }
     else{
     println!
     ("処理を選択してください\n(０:新規タスク登録、１:タスクの完了)");
@@ -51,33 +50,10 @@ Service_type.trim().to_string().parse::<u32>().unwrap();//整数に変換
 if Service_type.trim() == "0"{
 /*--------------------------------------------------------------------------------------------*/
 //０：タスクの登録へ
-    register::run(File_Path);
-
+    register::run(File_Path);}
 /*--------------------------------------------------------------------------------------------*/
-}else if
+else{
 //１：タスクの削除へ
-    Service_type.trim() == "1" && task_lines.len() != 0{//残っているタスクがある場合
-    println!("完了したタスク番号を入力してください");
-    let mut task_number = String::new();//入力されたタスク番号を格納
-    io::stdin().read_line(&mut task_number).unwrap();//標準入力で取得
-    let number_for_delete = task_number.trim().parse::<usize>().unwrap() - 1;//Vecは0始まりのため-1
+    delete::run(File_Path, task_lines);}
 /*--------------------------------------------------------------------------------------------*/
-//指定されたタスク番号のタスクを削除する処理へ
-let mut f = File::open(File_Path).unwrap();//ファイルを開く
-if  task_lines.len() > number_for_delete{//指定されたタスク番号がタスク数を超えていない場合
-    task_lines.remove(number_for_delete);//Vecから指定されたタスク番号のタスクを削除
-    println!("未完了のタスク{:?}",&task_lines);
-/*--------------------------------------------------------------------------------------------*/
-//削除後のタスク一覧をdata.txtに書き込む関数へ
-    file_rewrite_for_delete(&task_lines);
-/*--------------------------------------------------------------------------------------------*/
-}else{
-//指定されたタスク番号が無い場合
-    println!("エラー: 指定された番号は範囲外です");}
-/*--------------------------------------------------------------------------------------------*/
-}else{
-//未完了タスクがない場合
-    println!("未完了のタスクはありません");
-    return;
-    }
 }

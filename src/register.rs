@@ -14,8 +14,8 @@ new_task_name.trim().to_string().parse::<String>().unwrap();//文字列に変換
 
 //追加足したタスクをdata.txtに追記する関数へ
 let new_task_name = file_rewrite_for_register(new_task_name);
+}
 /*--------------------------------------------------------------------------------------------*/
-
 //追加足したタスクをdata.txtに追記する関数
 pub fn file_rewrite_for_register(file_path:String){
 let mut file = OpenOptions::new()
@@ -25,5 +25,4 @@ let mut file = OpenOptions::new()
 .expect("ファイルを開けませんでした");
 writeln!(file, "{}", file_path).unwrap();// 登録内容を追記
 println!("新規タスクの登録が完了しました");
-}
 }
