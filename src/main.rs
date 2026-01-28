@@ -18,10 +18,8 @@ let mut file_path:File= File::open(File_Path).unwrap();
 let mut contents = String::new();
 //data.txtの内容を１行ずつcontentsに読み込み
 file_path.read_to_string(&mut contents).unwrap();
-//読み込んだデータをVec<String>型に格納
-let mut task_lines: Vec<String> = Vec::new();
 /*--------------------------------------------------------------------------------------------*/
-//data.txtの生データからVecの中身を形成
+//data.txtの生データからVecの中身をString型で形成
 let mut task_lines: Vec<String> = contents//(Vecをシャドーイング：contents⇒task_lines)
 .lines()//改行で分割
 .filter(|&line| !&line.trim().is_empty()) //Vecの空行を除外
