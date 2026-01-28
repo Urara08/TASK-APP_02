@@ -4,13 +4,17 @@ use std::io::{Read, Write, BufWriter};
 use std::io::prelude::*;
 use std::io;
 
+use crate::form::read_for_input;
+
 pub fn run(file_path: &str, mut task_lines:Vec<String>){
 //１：タスクの削除へ
     if task_lines.len() != 0{//残っているタスクがある場合
     println!("完了したタスク番号を入力してください");
-    let mut task_number = String::new();//入力されたタスク番号を格納
-    io::stdin().read_line(&mut task_number).unwrap();//標準入力で取得
-    let number_for_delete = task_number.trim().parse::<usize>().unwrap() - 1;//Vecは0始まりのため-1
+/*--------------------------------------------------------------------------------------------*/
+//標準入力を取得する関数へ
+    let number_for_delete:usize =  read_for_input();
+//Vecは0始まりのため-1
+    let number_for_delete:usize =  number_for_delete -1;
 /*--------------------------------------------------------------------------------------------*/
 //指定されたタスク番号のタスクを削除する処理へ
 if  task_lines.len() > number_for_delete{//指定されたタスク番号がタスク数を超えていない場合
