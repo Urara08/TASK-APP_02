@@ -6,7 +6,10 @@ use std::io::prelude::*;
 mod appear;
 mod register;
 mod delete;
+mod validata;
+
 use appear::appear_for_unfinished_task;
+//use validata::inputvalidator;
 
 
 fn main(){
@@ -42,10 +45,13 @@ if  task_lines.len() == 0 {
 //処理番号を標準入力で取得
 let mut Service_type = String::new();//入力された処理番号を格納
 io::stdin().read_line(&mut Service_type).unwrap();//標準入力で取得
-Service_type.trim().to_string().parse::<u32>().unwrap();//整数に変換
+let Service_type:u32 = Service_type.trim().parse().unwrap();//整数に変換
+/*--------------------------------------------------------------------------------------------*/
+// 入力のバリデーション
+validata::inputvalidator::validate_service_type(Service_type);
 /*--------------------------------------------------------------------------------------------*/
 //処理番号で分岐
-if Service_type.trim() == "0"{
+if Service_type == 0{
 /*--------------------------------------------------------------------------------------------*/
 //０：タスクの登録へ
     register::run(File_Path);}
