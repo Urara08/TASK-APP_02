@@ -7,8 +7,10 @@ mod appear;
 mod register;
 mod delete;
 mod validata;
+mod form;
 use crate::appear::model_for_task_lines;
 use appear::appear_for_unfinished_task;
+use form::read_for_input;
 
 
 fn main() {
@@ -20,12 +22,11 @@ let mut file_path:File= File::open(File_Path).unwrap();
 let mut contents = String::new();
 //data.txtの内容を１行ずつcontentsに読み込み
 file_path.read_to_string(&mut contents).unwrap();
-
 /*--------------------------------------------------------------------------------------------*/
 //data.txtの生データからVecの中身をString型で形成
 let mut task_lines: Vec<String> = model_for_task_lines(contents);
 /*--------------------------------------------------------------------------------------------*/
-//未完了タスクの表示
+//未完了タスクの有無について表示
 if  task_lines.len() == 0 {
     println!
     ("未完了タスクはありません\n処理を選択してください\n(０:新規タスク登録、１:タスクの完了)");
@@ -33,21 +34,19 @@ if  task_lines.len() == 0 {
     else{
     println!
     ("処理を選択してください\n(０:新規タスク登録、１:タスクの完了)");
-    }
 /*--------------------------------------------------------------------------------------------*/
 //未完了タスク(ナンバリングしたtask_lines)を表示する関数へ
     appear_for_unfinished_task(&task_lines);
+    }
 /*--------------------------------------------------------------------------------------------*/
 //処理番号を標準入力で取得
-let mut Service_type = String::new();//入力された処理番号を格納
-io::stdin().read_line(&mut Service_type).unwrap();//標準入力で取得
-let Service_type:u32 = Service_type.trim().parse().unwrap();//整数に変換
+    let service_type: u32 = read_for_input();
 /*--------------------------------------------------------------------------------------------*/
 // 入力のバリデーション
-validata::inputvalidator::validate_service_type(Service_type);
+    validata::inputvalidator::validate_service_type(service_type);
 /*--------------------------------------------------------------------------------------------*/
 //処理番号で分岐
-if Service_type == 0{
+if service_type == 0{
 /*--------------------------------------------------------------------------------------------*/
 //０：タスクの登録へ
     register::run(File_Path);}
