@@ -9,9 +9,8 @@ pub fn run(file_path: &str){
 println!("新規タスクを入力してください");
 let mut new_task_name = String::new();//入力されたタスク名を格納
 io::stdin().read_line(&mut new_task_name).unwrap();//標準入力で取得
-new_task_name.trim().to_string().parse::<String>().unwrap();//文字列に変換
+let new_task_name:String = new_task_name.trim().parse().unwrap();//文字列に変換
 /*--------------------------------------------------------------------------------------------*/
-
 //追加足したタスクをdata.txtに追記する関数へ
 let new_task_name = file_rewrite_for_register(new_task_name);
 }

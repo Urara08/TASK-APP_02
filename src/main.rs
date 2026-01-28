@@ -7,12 +7,11 @@ mod appear;
 mod register;
 mod delete;
 mod validata;
-
+use crate::appear::model_for_task_lines;
 use appear::appear_for_unfinished_task;
-//use validata::inputvalidator;
 
 
-fn main(){
+fn main() {
 //data.txtのパスを指定
 let File_Path:&str = "src/data.txt";
 //data.txtを開く
@@ -21,13 +20,10 @@ let mut file_path:File= File::open(File_Path).unwrap();
 let mut contents = String::new();
 //data.txtの内容を１行ずつcontentsに読み込み
 file_path.read_to_string(&mut contents).unwrap();
+
 /*--------------------------------------------------------------------------------------------*/
 //data.txtの生データからVecの中身をString型で形成
-let mut task_lines: Vec<String> = contents//(Vecをシャドーイング：contents⇒task_lines)
-.lines()//改行で分割
-.filter(|&line| !&line.trim().is_empty()) //Vecの空行を除外
-.map(String::from)//Vec<String>に分割
-.collect();//Vecに格納
+let mut task_lines: Vec<String> = model_for_task_lines(contents);
 /*--------------------------------------------------------------------------------------------*/
 //未完了タスクの表示
 if  task_lines.len() == 0 {
