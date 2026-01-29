@@ -13,7 +13,7 @@ pub fn run(file_path: &str, mut task_lines:Vec<String>){
 /*--------------------------------------------------------------------------------------------*/
 //標準入力を取得する関数へ
     let number_for_delete:usize =  read_for_input();
-//Vecは0始まりのため-1
+//Vecは0始まりのため-1(number_for_deleteをシャドーイング)
     let number_for_delete:usize =  number_for_delete -1;
 /*--------------------------------------------------------------------------------------------*/
 //指定されたタスク番号のタスクを削除する処理へ

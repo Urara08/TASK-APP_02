@@ -12,16 +12,22 @@ use crate::appear::model_for_task_lines;
 use appear::appear_for_unfinished_task;
 use form::read_for_input;
 
+//main()にエラーを集約
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    run()?;
+    Ok(())
+}
 
-fn main() {
+//main()にエラーを返す
+fn run() -> Result<(), Box<dyn std::error::Error>> {
 //data.txtのパスを指定
 let File_Path:&str = "src/data.txt";
 //data.txtを開く
-let mut file_path:File= File::open(File_Path).unwrap();
+let mut file_path:File= File::open(File_Path)?;
 //読み込んだデータをString型に格納
 let mut contents = String::new();
 //data.txtの内容を１行ずつcontentsに読み込み
-file_path.read_to_string(&mut contents).unwrap();
+file_path.read_to_string(&mut contents)?;
 /*--------------------------------------------------------------------------------------------*/
 //data.txtの生データからVecの中身をString型で形成
 let mut task_lines: Vec<String> = model_for_task_lines(contents);
@@ -55,4 +61,7 @@ else{
 //１：タスクの削除へ
     delete::run(File_Path, task_lines);}
 /*--------------------------------------------------------------------------------------------*/
+
+
+    Ok(())
 }
