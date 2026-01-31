@@ -3,13 +3,14 @@ use std::fs::OpenOptions;
 use std::fs::File;
 use std::io::{Read, Write, BufWriter};
 
+use crate::form::read_for_input;
 
 pub fn run(file_path: &str){
 //標準入力からタスク名を取得しStringへ変換する関数へ
 println!("新規タスクを入力してください");
-let mut new_task_name = String::new();//入力されたタスク名を格納
-io::stdin().read_line(&mut new_task_name).unwrap();//標準入力で取得
-let new_task_name:String = new_task_name.trim().parse().unwrap();//文字列に変換
+/*--------------------------------------------------------------------------------------------*/
+//標準入力を取得する関数へ
+let new_task_name:String =  read_for_input();//文字列に変換
 /*--------------------------------------------------------------------------------------------*/
 //追加足したタスクをdata.txtに追記する関数へ
 let new_task_name = file_rewrite_for_register(new_task_name);
