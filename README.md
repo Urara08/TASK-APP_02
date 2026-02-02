@@ -1,5 +1,6 @@
 # TASK-APP_02
-TASK-APP (https://github.com/Urara08/TASK-APP)の更新をおこなっていくリポジトリ
+TASK-APP (https://github.com/Urara08/TASK-APP)
+の更新をおこなっていくリポジトリ
 ```
 ・関数の追加
 ・ファイル分割の更新
