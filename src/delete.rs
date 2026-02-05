@@ -3,16 +3,15 @@ use std::fs::File;
 use std::io::{Read, Write, BufWriter};
 use std::io::prelude::*;
 use std::io;
-
 use crate::form::read_for_input;
 
-pub fn run(file_path: &str, mut task_lines:Vec<String>){
+pub fn run(file_path: &str, mut task_lines:Vec<String>)-> Result<(), Box<dyn std::error::Error>>{
 //１：タスクの削除へ
     if task_lines.len() != 0{//残っているタスクがある場合
     println!("完了したタスク番号を入力してください");
 /*--------------------------------------------------------------------------------------------*/
 //標準入力を取得する関数へ
-    let number_for_delete:usize =  read_for_input();
+    let number_for_delete:usize =  read_for_input()?;
 //Vecは0始まりのため-1(number_for_deleteをシャドーイング)
     let number_for_delete:usize =  number_for_delete -1;
 /*--------------------------------------------------------------------------------------------*/
@@ -31,8 +30,8 @@ else{
 }else{
 //未完了タスクがない場合
     println!("未完了のタスクはありません");
-    return;
     }
+    Ok(())
  }
 /*--------------------------------------------------------------------------------------------*/
 //タスク削除用関数

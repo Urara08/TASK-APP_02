@@ -12,6 +12,7 @@ use crate::appear::model_for_task_lines;
 use appear::appear_for_unfinished_task;
 use form::read_for_input;
 
+
 //main()にエラーを集約
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     run()?;
@@ -46,7 +47,7 @@ if  task_lines.len() == 0 {
     }
 /*--------------------------------------------------------------------------------------------*/
 //処理番号を標準入力で取得
-    let service_type: u32 = read_for_input();
+    let service_type: u32 = read_for_input()?;
 /*--------------------------------------------------------------------------------------------*/
 // 入力のバリデーション
     validata::inputvalidator::validate_service_type(service_type);
@@ -61,7 +62,5 @@ else{
 //１：タスクの削除へ
     delete::run(File_Path, task_lines);}
 /*--------------------------------------------------------------------------------------------*/
-
-
     Ok(())
 }

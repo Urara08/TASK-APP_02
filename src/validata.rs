@@ -1,5 +1,6 @@
 pub struct inputvalidator {}
 
+
 // 入力のバリデーション
 impl inputvalidator {
     pub fn validate_service_type(Service_type: u32) {
