@@ -1,4 +1,4 @@
-# TASK-APP_RUS_02
+# TASK-APP_RUST_02
 TASK-APP_RUST (https://github.com/Urara08/TASK-APP)
 の更新をおこなっていくリポジトリ
 ```
